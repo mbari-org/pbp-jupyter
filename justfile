@@ -1,12 +1,17 @@
+set dotenv-load := true
+
 # List recipes
 list:
     @just --list --unsorted
 
-image := "mbari/pbp-jupyter:1.0.11"
+pbp_version := "1.0.11"
+image := "mbari/pbp-jupyter:" + pbp_version
+
+## NOTE: NO volume mapping(s) below for simplicity.
 
 # Create docker image
 dockerize:
-    docker build -t {{image}} .
+    docker build -t {{image}} --build-arg PBP_VERSION={{pbp_version}} .
 
 # Run docker image (non-interactive)
 run:
@@ -15,3 +20,18 @@ run:
 # Run docker image (interactive)
 run-it:
     docker run -it --rm -p 8888:8888 --name pbp-jupyter {{image}}
+
+## Though the main purpose is running the jupyter notebook,
+## one can also run the CLI programs directly:
+
+# Run pbp-json-gen
+pbp-json-gen *args="":
+    docker run -it --rm --name pbp {{image}} pbp-json-gen {{args}}
+
+# Run pbp
+pbp *args="":
+    docker run -it --rm --name pbp {{image}} pbp {{args}}
+
+# Run pbp-plot
+pbp-plot *args="":
+    docker run -it --rm --name pbp {{image}} pbp-plot {{args}}
