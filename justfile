@@ -8,6 +8,10 @@ image := "mbari/pbp-jupyter:1.0.8"
 dockerize:
     docker build -t {{image}} .
 
-# Run docker image
+# Run docker image (non-interactive)
 run:
-    docker run -it --rm -p 8888:8888 {{image}}
+    docker run --rm -p 8888:8888 --name pbp-jupyter {{image}}
+
+# Run docker image (interactive)
+run-it:
+    docker run -it --rm -p 8888:8888 --name pbp-jupyter {{image}}
