@@ -4,7 +4,7 @@ WORKDIR /opt/pbp
 
 USER root
 RUN apt-get update && apt-get install -y libsox-fmt-all libsox-dev
-RUN pip install mbari-pbp==1.0.10
+RUN pip install mbari-pbp==1.0.11
 COPY . /opt/pbp
 
 RUN chown -R jovyan /opt/pbp

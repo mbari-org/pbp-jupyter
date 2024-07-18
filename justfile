@@ -2,7 +2,7 @@
 list:
     @just --list --unsorted
 
-image := "mbari/pbp-jupyter:1.0.10"
+image := "mbari/pbp-jupyter:1.0.11"
 
 # Create docker image
 dockerize:
