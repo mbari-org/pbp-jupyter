@@ -21,8 +21,8 @@ run:
 run-it:
     docker run -it --rm -p 8888:8888 --name pbp-jupyter {{image}}
 
-## Though the main purpose is running the jupyter notebook,
-## one can also run the CLI programs directly:
+## Though the main purpose is running jupyter, one can also run the CLI programs directly:
+## Again, note that volume mapping(s) would be needed to access local filesystem.
 
 # Run pbp-json-gen
 pbp-json-gen *args="":
