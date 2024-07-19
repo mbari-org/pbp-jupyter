@@ -29,5 +29,5 @@ Open http://gizo.shore.mbari.org:8888/tree in browser and enter the token.
 The `workspace/` directory included in the Jupyter environment is mapped
 to the host's `/tmp/pbp_notebook_workspace` directory.
 
-NOPE: This is a PRELIMINARY mechanism to "persist" notebooks and other files 
+NOTE: This is a PRELIMINARY mechanism to "persist" notebooks and other files 
 that you create/update under `workspace/` in the Jupyter environment.
