@@ -1,0 +1,9 @@
+services:
+  pbp-jupyter:
+    container_name: pbp-jupyter
+    image: ${PBP_IMAGE}
+    ports: ['8888:8888']
+    volumes: [
+      '/tmp/pbp_notebook_workspace:/opt/pbp/workspace',
+    ]
+    restart: unless-stopped

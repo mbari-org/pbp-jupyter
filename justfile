@@ -4,10 +4,6 @@ set dotenv-load := true
 list:
     @just --list --unsorted
 
-## NOTE: NO volume mapping(s) below for simplicity.
-
-image := "mbari/pbp-jupyter"
-
 # Prepare with given pbp package version
 prepare version:
   echo "export PBP_VERSION={{version}}"                    >  .env
@@ -16,7 +12,16 @@ prepare version:
 # Create docker image
 dockerize:
     cat .env
-    docker build -t $PBP_IMAGE --build-arg PBP_VERSION=$PBP_VERSION .
+    docker build \
+          -t $PBP_IMAGE \
+          --build-arg PBP_VERSION=$PBP_VERSION \
+          --build-arg NB_UID=$(id -u) \
+          --build-arg NB_GID=$(id -g) \
+          .
+
+# Run image via compose
+up *args="-d":
+    docker compose up {{args}}
 
 # Run docker image (non-interactive)
 run:
