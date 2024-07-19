@@ -23,6 +23,10 @@ dockerize:
 up *args="-d":
     docker compose up {{args}}
 
+# Shutdown launched image via compose
+down *args="":
+    docker down {{args}}
+
 # Run image via compose
 logs tail="100":
     docker logs --tail={{tail}} -f pbp-jupyter
