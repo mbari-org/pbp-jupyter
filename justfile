@@ -25,7 +25,7 @@ up *args="-d":
 
 # Shutdown launched image via compose
 down *args="":
-    docker down {{args}}
+    docker compose down {{args}}
 
 # Run image via compose
 logs tail="100":
