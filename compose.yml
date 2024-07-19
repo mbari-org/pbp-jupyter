@@ -4,6 +4,6 @@ services:
     image: ${PBP_IMAGE}
     ports: ['8888:8888']
     volumes: [
-      '/tmp/pbp_notebook_workspace:/opt/pbp/workspace',
+      '/home/carueda/pbp_workspace:/opt/pbp/workspace',
     ]
     restart: unless-stopped

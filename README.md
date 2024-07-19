@@ -6,6 +6,20 @@ WIP
 
 Being tested on `gizo`.
 
+## Use
+
+- The `workspace/` directory included in the Jupyter environment is mapped
+  to the host's `/home/carueda/pbp_workspace/` directory.
+- NOTE: That's a preliminary location to persist any working notebooks and other files 
+  that you create/update under `workspace/` in the Jupyter environment.
+
+## Setup
+
+On `gizo`: 
+```
+cd /PAM_Analysis/github/pbp-jupyter
+```
+
 Preparation depending on PBP package version:
 ```
 just prepare <pbp package version>   #  e.g., 1.0.11
@@ -24,10 +38,6 @@ just logs
 ```
 Take note of the token included in the logs.
 
-Open http://gizo.shore.mbari.org:8888/tree in browser and enter the token.
-
-The `workspace/` directory included in the Jupyter environment is mapped
-to the host's `/tmp/pbp_notebook_workspace` directory.
-
-NOTE: This is a PRELIMINARY mechanism to "persist" notebooks and other files 
-that you create/update under `workspace/` in the Jupyter environment.
+- Open http://gizo.shore.mbari.org:8888/tree in your browser
+- enter the token
+- Enjoy!
