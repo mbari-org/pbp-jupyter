@@ -4,34 +4,42 @@ set dotenv-load := true
 list:
     @just --list --unsorted
 
-pbp_version := "1.0.11"
-image := "mbari/pbp-jupyter:" + pbp_version
-
 ## NOTE: NO volume mapping(s) below for simplicity.
+
+image := "mbari/pbp-jupyter"
+
+# Prepare with given pbp package version
+prepare version:
+  echo "export PBP_VERSION={{version}}"                    >  .env
+  echo "export PBP_IMAGE=mbari/pbp-jupyter:{{version}}"   >>  .env
 
 # Create docker image
 dockerize:
-    docker build -t {{image}} --build-arg PBP_VERSION={{pbp_version}} .
+    cat .env
+    docker build -t $PBP_IMAGE --build-arg PBP_VERSION=$PBP_VERSION .
 
 # Run docker image (non-interactive)
 run:
-    docker run --rm -p 8888:8888 --name pbp-jupyter {{image}}
+    docker run --rm -p 8888:8888 --name pbp-jupyter $PBP_IMAGE
 
 # Run docker image (interactive)
 run-it:
-    docker run -it --rm -p 8888:8888 --name pbp-jupyter {{image}}
+    docker run -it --rm -p 8888:8888 --name pbp-jupyter $PBP_IMAGE
 
 ## Though the main purpose is running jupyter, one can also run the CLI programs directly:
 ## Again, note that volume mapping(s) would be needed to access local filesystem.
 
 # Run pbp-json-gen
 pbp-json-gen *args="":
-    docker run -it --rm --name pbp {{image}} pbp-json-gen {{args}}
+    just _run-cli pbp-json-gen {{args}}
 
 # Run pbp
 pbp *args="":
-    docker run -it --rm --name pbp {{image}} pbp {{args}}
+    just _run-cli pbp {{args}}
 
 # Run pbp-plot
 pbp-plot *args="":
-    docker run -it --rm --name pbp {{image}} pbp-plot {{args}}
+    just _run-cli pbp-plot {{args}}
+
+_run-cli cli *args="":
+    docker run -it --rm --name {{cli}} $PBP_IMAGE {{cli}} {{args}}
