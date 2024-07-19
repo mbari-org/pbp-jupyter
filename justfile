@@ -23,6 +23,10 @@ dockerize:
 up *args="-d":
     docker compose up {{args}}
 
+# Run image via compose
+logs tail="100":
+    docker logs --tail={{tail}} -f pbp-jupyter
+
 # Run docker image (non-interactive)
 run:
     docker run --rm -p 8888:8888 --name pbp-jupyter $PBP_IMAGE
