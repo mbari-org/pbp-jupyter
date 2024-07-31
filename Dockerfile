@@ -1,6 +1,10 @@
 FROM quay.io/jupyter/minimal-notebook:latest
 
 ARG PBP_VERSION
+ARG USERNAME=jovyan
+ARG USER_UID=1000
+ARG USER_GID=100
+
 WORKDIR /opt/pbp
 
 USER root
@@ -8,10 +12,16 @@ RUN apt-get update && apt-get install -y libsox-fmt-all libsox-dev
 RUN pip install mbari-pbp==$PBP_VERSION
 COPY . /opt/pbp
 
-RUN chown -R jovyan /opt/pbp
-USER jovyan
+# Modify the jovyan user to have the specified UID and GID
+RUN usermod -u ${USER_UID} -g ${USER_GID} ${USERNAME} \
+    && chown -R ${USER_UID}:${USER_GID} /home/${USERNAME}
 
-ENV PYTHONPATH=/opt/pbp:/opt/pbp/pbp
+
+RUN chown -R ${USER_UID}:${USER_GID} /opt/pbp
+
+USER ${USERNAME}
+
+ENV PYTHONPATH=/opt/pbp
 EXPOSE 8888
 
 CMD ["/opt/conda/bin/jupyter", "notebook", "--notebook-dir=/opt/pbp", "--ip='*'","--port=8888","--no-browser", "--allow-root"]

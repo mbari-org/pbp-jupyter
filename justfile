@@ -15,8 +15,8 @@ dockerize:
     docker build \
           -t $PBP_IMAGE \
           --build-arg PBP_VERSION=$PBP_VERSION \
-          --build-arg NB_UID=$(id -u) \
-          --build-arg NB_GID=$(id -g) \
+          --build-arg USER_UID=$(id -u) \
+          --build-arg USER_GID=$(id -g) \
           .
 
 # Run image via compose

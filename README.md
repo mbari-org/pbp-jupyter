@@ -9,9 +9,7 @@ Being tested on `gizo`.
 ## Use
 
 - The `workspace/` directory included in the Jupyter environment is mapped
-  to the host's `/home/carueda/pbp_workspace/` directory.
-- NOTE: That's a preliminary location to persist any working notebooks and other files 
-  that you create/update under `workspace/` in the Jupyter environment.
+  to the host's `/opt/pbp_workspace/` directory.
 
 ## Setup
 
