@@ -36,16 +36,8 @@ down *args="":
 logs tail="100":
     docker logs --tail={{tail}} -f pbp-jupyter
 
-# Run docker image (non-interactive)
-run:
-    docker run --rm -p 8888:8888 --name pbp-jupyter $PBP_IMAGE
-
-# Run docker image (interactive)
-run-it:
-    docker run -it --rm -p 8888:8888 --name pbp-jupyter $PBP_IMAGE
-
 ## Though the main purpose is running jupyter, one can also run the CLI programs directly:
-## Again, note that volume mapping(s) would be needed to access local filesystem.
+## NOTE: volume mapping(s) would be needed to access local filesystem.
 
 # Run pbp-json-gen
 pbp-json-gen *args="":
