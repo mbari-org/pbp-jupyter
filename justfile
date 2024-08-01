@@ -4,19 +4,24 @@ set dotenv-load := true
 list:
     @just --list --unsorted
 
-# Prepare with given pbp package version
-prepare version:
-  echo "export PBP_VERSION={{version}}"                    >  .env
-  echo "export PBP_IMAGE=mbari/pbp-jupyter:{{version}}"   >>  .env
+# Prepare with given pbp package version and host workspace location
+prepare version host_workspace:
+  @echo "export PBP_VERSION={{version}}"                    >  .env
+  @echo "export PBP_IMAGE=mbari/pbp-jupyter:{{version}}"   >>  .env
+  @echo "export HOST_WORKSPACE={{host_workspace}}"         >>  .env
+  @cat .env
 
 # Create docker image
 dockerize:
+    #!/usr/bin/env bash
+    set -eu
     cat .env
+    cd root
     docker build \
+          -f ../Dockerfile \
           -t $PBP_IMAGE \
           --build-arg PBP_VERSION=$PBP_VERSION \
           --build-arg USER_UID=$(id -u) \
-          --build-arg USER_GID=$(id -g) \
           .
 
 # Run image via compose
@@ -27,7 +32,7 @@ up *args="-d":
 down *args="":
     docker compose down {{args}}
 
-# Run image via compose
+# Tail pbp-jupyter container logs
 logs tail="100":
     docker logs --tail={{tail}} -f pbp-jupyter
 

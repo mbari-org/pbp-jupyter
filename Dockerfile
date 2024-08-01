@@ -1,4 +1,4 @@
-FROM quay.io/jupyter/minimal-notebook:latest
+FROM quay.io/jupyter/minimal-notebook:2024-08-01
 
 ARG PBP_VERSION
 ARG USERNAME=jovyan

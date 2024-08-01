@@ -1,0 +1,4 @@
+# Ignore everything that may be added under /root/, possibly by mistake:
+*
+# For now we only want to capture the following:
+!README.md

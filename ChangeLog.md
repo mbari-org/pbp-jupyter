@@ -1,3 +1,9 @@
+2024-08
+
+- Reorganization toward a more finalized product, see updated README.md.
+- Using explicit base image tag for reproducibility.
+  Now: `quay.io/jupyter/minimal-notebook:2024-08-01`.
+
 2024-07
 
 - gizo setup now with `/opt/pbp_workspace/` as host location for persistence.

@@ -1,41 +1,62 @@
-# PBP for Jupyter Lab
+# pbp-jupyter
 
-mbari/pbp-jupyter docker image.
+This repo is used to create the `mbari/pbp-jupyter` docker image,
+which provides a Jupyter environment with the `mbari-pbp` package already installed.
 
-WIP
+## Deployment
 
-Being tested on `gizo`.
+The steps are basically: preparation, dockerization, and use.
 
-## Use
+With a clone of this repo, you can proceed as follows:
 
-- The `workspace/` directory included in the Jupyter environment is mapped
-  to the host's `/opt/pbp_workspace/` directory.
+- Decide on the version of the `mbari-pbp` package to be used.
+- Decide on the host directory to be mapped to the `workspace/` directory in the Jupyter environment.
 
-## Setup
+We use the [`just`](https://just.systems) tool for convenience, but the steps can also be run
+more manually with direct `docker` commands (see the `justfile` for the details).
 
-On `gizo`: 
+- Prepare the environment:
+  ```
+  just prepare <pbp_version> <host_workspace>
+  ```
+    For example:
+    ```
+    just prepare 1.0.11 /path/to/host/workspace
+    ```
+  
+- Create the docker image:
+  ```
+  just dockerize
+  ```
+  The image will be tagged according to the given mbari-pbp version,
+  for example, `mbari/pbp-jupyter:1.0.11`.
+
+- Run the docker image:
+  ```
+  just up
+  just logs
+  ```
+- From the log output, open the indicated URL in your browser.
+- Enjoy!
+
+## Development/testing
+
+The `root/` directory here, to be captured in the image, only contains a `README.md` file
+oriented to the user of the Jupiter environment.
+TODO maybe add some basic demo notebooks there?
+
+`test_workspace/` is only for testing purposes.
+
+As a quick local exercising of the deployment procedure above: 
 ```
-cd /PAM_Analysis/github/pbp-jupyter
-```
-
-Preparation depending on PBP package version:
-```
-just prepare <pbp package version>   #  e.g., 1.0.11
-```
-This puts some info in `.env` for the other commands to use.
-
-Create the docker image (if not already done for the prepared version):
-```
+just prepare 1.0.11 $(pwd)/test_workspace
 just dockerize
-```
-
-Run the docker image:
-```
 just up
 just logs
 ```
-Take note of the token included in the logs.
-
-- Open http://gizo.shore.mbari.org:8888/tree in your browser
-- enter the token
-- Enjoy!
+Open the indicated URL in the browser, do some inspections, tests, etc.,
+and finally:
+```
+just down
+```
+to stop the container.
