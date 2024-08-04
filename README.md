@@ -21,15 +21,14 @@ more manually with direct `docker` commands (see the `justfile` for the details)
   ```
     For example:
     ```
-    just prepare 1.0.11 /path/to/host/workspace
+    just prepare 1.1.0 /path/to/host/workspace
     ```
   
 - Create the docker image:
   ```
   just dockerize
   ```
-  The image will be tagged according to the given mbari-pbp version,
-  for example, `mbari/pbp-jupyter:1.0.11`.
+  The image will be tagged according to the given mbari-pbp version.
 
 - Run the docker image:
   ```
@@ -49,7 +48,7 @@ TODO maybe add some basic demo notebooks there?
 
 As a quick local exercising of the deployment procedure above: 
 ```
-just prepare 1.0.11 $(pwd)/test_workspace
+just prepare 1.1.0 $(pwd)/test_workspace
 just dockerize
 just up
 just logs
