@@ -1,6 +1,6 @@
-# Jupyter Lab with mbari-pbp
+# JupyterLab with mbari-pbp
 
-This is a Jupyter Lab environment with the `mbari-pbp` package already installed.
+This is a JupyterLab environment with the `mbari-pbp` package already installed.
 
 Documentation about the `mbari-pbp` package can be found at https://docs.mbari.org/pbp/.
 

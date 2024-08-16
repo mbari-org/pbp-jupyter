@@ -21,7 +21,7 @@ more manually with direct `docker` commands (see the `justfile` for the details)
   ```
     For example:
     ```
-    just prepare 1.1.0 /path/to/host/workspace
+    just prepare 1.2.4 /path/to/host/workspace
     ```
   
 - Create the docker image:
@@ -41,14 +41,14 @@ more manually with direct `docker` commands (see the `justfile` for the details)
 ## Development/testing
 
 The `root/` directory here, to be captured in the image, only contains a `README.md` file
-oriented to the user of the Jupiter environment.
+oriented to the user of the JupiterLab environment.
 TODO maybe add some basic demo notebooks there?
 
 `test_workspace/` is only for testing purposes.
 
 As a quick local exercising of the deployment procedure above: 
 ```
-just prepare 1.1.0 $(pwd)/test_workspace
+just prepare 1.2.4 $(pwd)/test_workspace
 just dockerize
 just up
 just logs
