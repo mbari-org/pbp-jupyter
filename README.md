@@ -1,7 +1,7 @@
 # pbp-jupyter
 
 This repo is used to create the `mbari/pbp-jupyter` docker image,
-which provides a Jupyter environment with the `mbari-pbp` package already installed.
+which provides a JupyterLab environment with the `mbari-pbp` package already installed.
 
 ## Deployment
 
@@ -10,7 +10,8 @@ The steps are basically: preparation, dockerization, and use.
 With a clone of this repo, you can proceed as follows:
 
 - Decide on the version of the `mbari-pbp` package to be used.
-- Decide on the host directory to be mapped to the `workspace/` directory in the Jupyter environment.
+- Decide on the host directory to be mapped to the `workspace/` directory
+  in the JupyterLab environment.
 
 We use the [`just`](https://just.systems) tool for convenience, but the steps can also be run
 more manually with direct `docker` commands (see the `justfile` for the details).
