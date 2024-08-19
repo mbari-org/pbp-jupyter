@@ -1,5 +1,7 @@
 2024-08
 
+- For our local deployment convenience, no auth required.
+  IMPORTANT: In general, this is a security risk, so make sure you know what you are doing.
 - Reorganization toward a more finalized product, see updated README.md.
 - Using explicit base image tag for reproducibility.
   Now: `quay.io/jupyter/minimal-notebook:2024-08-01`.

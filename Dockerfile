@@ -16,6 +16,12 @@ COPY . /opt/pbp
 RUN usermod -u ${USER_UID} -g ${USER_GID} ${USERNAME} \
     && chown -R ${USER_UID}:${USER_GID} /home/${USERNAME}
 
+# If wanting to disable need for authentication:
+# ==== IMPORTANT: This is a security risk, and should only be used for local development ====
+RUN jupyter notebook --generate-config \
+ && echo "c.ServerApp.token    = ''"  >> /home/${USERNAME}/.jupyter/jupyter_notebook_config.py \
+ && echo "c.ServerApp.password = ''"  >> /home/${USERNAME}/.jupyter/jupyter_notebook_config.py \
+ && chown -R ${USER_UID}:${USER_GID}     /home/${USERNAME}/.jupyter
 
 RUN chown -R ${USER_UID}:${USER_GID} /opt/pbp
 
