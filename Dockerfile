@@ -9,6 +9,7 @@ WORKDIR /opt/pbp
 
 USER root
 RUN apt-get update && apt-get install -y libsox-fmt-all libsox-dev
+RUN pip install ipywidgets
 RUN pip install mbari-pbp==$PBP_VERSION
 COPY . /opt/pbp
 

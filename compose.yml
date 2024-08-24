@@ -3,7 +3,6 @@ services:
     container_name: pbp-jupyter
     image: ${PBP_IMAGE}
     ports: ['8888:8888']
-    volumes: [
-      '${HOST_WORKSPACE}:/opt/pbp/workspace',
-    ]
+    volumes:
+      - '${HOST_WORKSPACE}:/opt/pbp/workspace'
     restart: unless-stopped
