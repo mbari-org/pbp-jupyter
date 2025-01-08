@@ -1,9 +1,12 @@
+2025-01
+
+- Removed the no-auth-required setup. 
+  Though convenient for local testing, it is a security risk if exposed outside a controlled environment.
+
 2024-08
 
 - include `pip install ipywidgets`, which mainly helps avoid the displayed
   error when importing pbp.    
-- For our local deployment convenience, no auth required.
-  IMPORTANT: In general, this is a security risk, so make sure you know what you are doing.
 - Reorganization toward a more finalized product, see updated README.md.
 - Using explicit base image tag for reproducibility.
   Now: `quay.io/jupyter/minimal-notebook:2024-08-01`.
