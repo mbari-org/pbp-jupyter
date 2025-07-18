@@ -1,3 +1,8 @@
+2025-04
+
+- Updated Dockerfile to use more recent quay.io/jupyter/minimal-notebook,
+  but still with python-3.11 due to the requirement of the `mbari-pbp`/`pypam` packages.
+
 2025-01
 
 - Removed the no-auth-required setup. 
