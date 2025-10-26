@@ -12,7 +12,7 @@ prepare version host_workspace:
   @cat .env
 
 # Create docker image
-dockerize:
+dockerize *args="":
     #!/usr/bin/env bash
     set -eu
     cat .env
@@ -22,7 +22,8 @@ dockerize:
           -t $PBP_IMAGE \
           --build-arg PBP_VERSION=$PBP_VERSION \
           --build-arg USER_UID=$(id -u) \
-          .
+          . \
+          {{args}}
 
 # Run image via compose
 up *args="-d":
