@@ -1,3 +1,7 @@
+2026-01
+
+- Use JUPYTER_TOKEN to have the token remain the same across container restarts.
+
 2025-07
 
 - Updated Dockerfile to use more recent quay.io/jupyter/minimal-notebook,

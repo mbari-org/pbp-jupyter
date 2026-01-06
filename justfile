@@ -4,11 +4,12 @@ set dotenv-load := true
 list:
     @just --list --unsorted
 
-# Prepare with given pbp package version and host workspace location
-prepare version host_workspace:
+# Prepare with given pbp version, host workspace location, and token
+prepare version host_workspace token:
   @echo "export PBP_VERSION={{version}}"                    >  .env
   @echo "export PBP_IMAGE=mbari/pbp-jupyter:{{version}}"   >>  .env
   @echo "export HOST_WORKSPACE={{host_workspace}}"         >>  .env
+  @echo "export JUPYTER_TOKEN={{token}}"                   >>  .env
   @cat .env
 
 # Create docker image
