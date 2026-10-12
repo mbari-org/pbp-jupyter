@@ -1,3 +1,7 @@
+2026-10
+
+- Minor edit in root/README.md
+
 2026-01
 
 - Use JUPYTER_TOKEN to have the token remain the same across container restarts.
